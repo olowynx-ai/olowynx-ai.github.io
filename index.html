@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Olaoluwakiiti Olowookere | AI Video Creator</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --accent: #c8ff00;
+    --mid: #1a1a1a;
+    --card: #131313;
+    --muted: #888;
+    --border: rgba(255,255,255,0.08);
+    --font: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,255,0,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,255,0,0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    padding: 0.85rem 2rem;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: var(--white); transform: translateY(-1px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 2.5rem;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-scroll::before {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    flex: 1;
+    padding: 2rem 2.5rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 6rem 2.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .work-card {
+    background: var(--card);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .work-card:hover { background: #1c1c1c; }
+
+  .work-card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    padding: 3px 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .work-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .work-card-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .work-card-tools {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tool-pill {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 3px 10px;
+  }
+
+  .work-card-arrow {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 20px;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .work-card:hover .work-card-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  /* TESTIMONIAL */
+  .testimonial-section {
+    background: var(--mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .testimonial-inner {
+    max-width: 800px;
+  }
+
+  .testimonial-quote {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    color: var(--white);
+  }
+
+  .testimonial-quote::before {
+    content: '\201C';
+    color: var(--accent);
+    font-size: 4rem;
+    line-height: 0;
+    vertical-align: -0.6rem;
+    margin-right: 0.2rem;
+    font-style: normal;
+  }
+
+  .testimonial-attribution {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .attribution-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--black);
+  }
+
+  .attribution-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .attribution-role {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .service-card {
+    background: var(--card);
+    padding: 2rem;
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* TOOLS */
+  .tools-section {
+    background: var(--mid);
+    border-top: 1px solid var(--border);
+  }
+
+  .tools-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tool-badge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.2rem;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s;
+  }
+
+  .tool-badge:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* CTA FOOTER */
+  .cta-section {
+    text-align: center;
+    padding: 8rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .cta-sub {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+
+  .cta-email {
+    display: block;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    transition: opacity 0.2s;
+  }
+
+  .cta-email:hover { opacity: 0.7; }
+
+  footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.2rem; }
+    .hero { padding: 4rem 1.2rem 3rem; }
+    .stats-bar { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 1.2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Olaoluwakiiti Olowookere</span>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-eyebrow">AI Video Creator &amp; Cinematic Storyteller</p>
+  <h1 class="hero-headline">Ads that <em>stop</em> the scroll.</h1>
+  <p class="hero-sub">Short-form AI video for brands that need to be remembered. Cinematic quality, delivered fast, built to convert.</p>
+  <div class="hero-ctas">
+    <a href="#work" class="btn-primary">View work</a>
+    <a href="#contact" class="btn-ghost">Work together</a>
+  </div>
+  <span class="hero-scroll" aria-hidden="true">Scroll</span>
+</section>
+
+<div class="stats-bar" role="list">
+  <div class="stat" role="listitem">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Brand categories served</div>
+  </div>
+  <div class="stat" role="listitem">
+    <div class="stat-num">2+</div>
+    <div class="stat-label">Years in AI video</div>
+  </div>
+  <div class="stat" role="listitem">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Core AI tools mastered</div>
+  </div>
+  <div class="stat" role="listitem">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Remote &amp; global-ready</div>
+  </div>
+</div>
+
+<section id="work">
+  <p class="section-eyebrow">Selected work</p>
+  <h2 class="section-title">Across categories.<br>One standard.</h2>
+
+  <div class="work-grid" role="list">
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">Brand Commercial</div>
+      <h3 class="work-card-title">CourtBorn — Sportswear Launch</h3>
+      <p class="work-card-desc">Cinematic brand ad for a fictional sportswear label. Fast cuts, motion typography, high-impact visual storytelling designed for social.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Veo 3</span>
+        <span class="tool-pill">Runway</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">Product Ad</div>
+      <h3 class="work-card-title">Herbal Soap — Brand Story</h3>
+      <p class="work-card-desc">Narrative-led product ad for a natural skincare brand. Emotional storytelling approach praised by the client for its warmth and authenticity.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Kling</span>
+        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">CapCut</span>
+      </div>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">Product Ad</div>
+      <h3 class="work-card-title">Headphone Ad — Audio Brand</h3>
+      <p class="work-card-desc">High-energy product commercial with immersive sound design and kinetic visual language built for premium headphone positioning.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Veo 3</span>
+        <span class="tool-pill">Runway</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">Innovation Ad</div>
+      <h3 class="work-card-title">3D Avatar — Glasses Campaign</h3>
+      <p class="work-card-desc">Futuristic AI avatar-led campaign for a glasses brand. 3D character integration with cinematic lighting and brand-forward messaging.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Runway</span>
+        <span class="tool-pill">Kling</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">FMCG</div>
+      <h3 class="work-card-title">Soft Drink — Lifestyle Reel</h3>
+      <p class="work-card-desc">Fast-paced lifestyle ad blending vibrant visuals with punchy storytelling to position the drink as the choice for a younger audience.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Veo 3</span>
+        <span class="tool-pill">CapCut</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+      <div class="work-card-tag">Skincare</div>
+      <h3 class="work-card-title">Skincare — Visual Brand Story</h3>
+      <p class="work-card-desc">Soft-tone, aspirational skincare content. Cinematic pacing and visual elegance tailored to a premium beauty audience.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Runway</span>
+        <span class="tool-pill">Kling</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <div class="testimonial-inner">
+    <p class="section-eyebrow">Client feedback</p>
+    <blockquote class="testimonial-quote">
+      The story was wonderfully told.
+    </blockquote>
+    <div class="testimonial-attribution">
+      <div class="attribution-dot" aria-hidden="true">JO</div>
+      <div>
+        <div class="attribution-name">Jumoke Olowookere</div>
+        <div class="attribution-role">Founder, The Waste Museum</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="section-eyebrow">What I do</p>
+  <h2 class="section-title">The full picture.</h2>
+
+  <div class="services-grid" role="list">
+    <div class="service-card" role="listitem">
+      <div class="service-icon" aria-hidden="true">🎬</div>
+      <h3 class="service-title">Cinematic Brand Ads</h3>
+      <p class="service-desc">Short-form commercials built for social, designed to make your brand impossible to ignore. Product, lifestyle, or storytelling formats.</p>
+    </div>
+    <div class="service-card" role="listitem">
+      <div class="service-icon" aria-hidden="true">📖</div>
+      <h3 class="service-title">Book Trailers</h3>
+      <p class="service-desc">Cinematic video trailers for indie authors and publishers. Emotional hooks that drive pre-orders and reader curiosity.</p>
+    </div>
+    <div class="service-card" role="listitem">
+      <div class="service-icon" aria-hidden="true">🏠</div>
+      <h3 class="service-title">Real Estate Video</h3>
+      <p class="service-desc">Property showcase reels that sell the lifestyle, not just the listing. Perfect for agents needing standout content fast.</p>
+    </div>
+    <div class="service-card" role="listitem">
+      <div class="service-icon" aria-hidden="true">📱</div>
+      <h3 class="service-title">Social Content</h3>
+      <p class="service-desc">Platform-native short-form content for Instagram, TikTok, LinkedIn, and more. Scroll-stopping hooks, every time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tools-section">
+  <p class="section-eyebrow">Toolkit</p>
+  <h2 class="section-title">Production stack.</h2>
+  <div class="tools-row" role="list">
+    <span class="tool-badge" role="listitem">Veo 3</span>
+    <span class="tool-badge" role="listitem">Runway</span>
+    <span class="tool-badge" role="listitem">Kling</span>
+    <span class="tool-badge" role="listitem">ElevenLabs</span>
+    <span class="tool-badge" role="listitem">CapCut</span>
+  </div>
+</section>
+
+<section id="contact" class="cta-section">
+  <p class="section-eyebrow">Let's build</p>
+  <h2 class="cta-title">Got a brand?<br><em>Let's make it move.</em></h2>
+  <p class="cta-sub">Open to full-time, contract, and freelance. Remote only.</p>
+  <a href="mailto:your@email.com" class="cta-email">your@email.com</a>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="https://linkedin.com/in/yourprofile" class="btn-ghost" style="display:inline-block;">LinkedIn</a>
+    <a href="https://fiverr.com/yourprofile" class="btn-ghost" style="display:inline-block;">Fiverr</a>
+    <a href="https://upwork.com/yourprofile" class="btn-ghost" style="display:inline-block;">Upwork</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Olaoluwakiiti Olowookere</span>
+  <span style="letter-spacing: 0.1em; text-transform: uppercase;">AI Video Creator</span>
+</footer>
+
+</body>
+</html>
