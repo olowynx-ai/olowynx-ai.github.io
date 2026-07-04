@@ -132,6 +132,7 @@
     border: none;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.15s;
+    display: inline-block;
   }
 
   .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
@@ -147,6 +148,7 @@
     border: 1px solid rgba(255,255,255,0.2);
     cursor: pointer;
     transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
   }
 
   .btn-ghost:hover { border-color: var(--white); transform: translateY(-1px); }
@@ -238,7 +240,6 @@
     position: relative;
     overflow: hidden;
     transition: background 0.2s;
-    cursor: pointer;
   }
 
   .work-card:hover { background: #1c1c1c; }
@@ -274,6 +275,7 @@
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    margin-bottom: 1.5rem;
   }
 
   .tool-pill {
@@ -286,19 +288,21 @@
     padding: 3px 10px;
   }
 
-  .work-card-arrow {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 20px;
-    color: var(--muted);
-    opacity: 0;
-    transition: opacity 0.2s, transform 0.2s;
+  .watch-btn {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 16px;
+    transition: background 0.2s, color 0.2s;
   }
 
-  .work-card:hover .work-card-arrow {
-    opacity: 1;
-    transform: translate(2px, -2px);
+  .watch-btn:hover {
+    background: var(--accent);
+    color: var(--black);
   }
 
   .testimonial-section {
@@ -502,8 +506,8 @@
 
 <div class="stats-bar" role="list">
   <div class="stat" role="listitem">
-    <div class="stat-num">8+</div>
-    <div class="stat-label">Brand categories served</div>
+    <div class="stat-num">7+</div>
+    <div class="stat-label">Videos produced</div>
   </div>
   <div class="stat" role="listitem">
     <div class="stat-num">2+</div>
@@ -526,75 +530,87 @@
   <div class="work-grid" role="list">
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">Brand Commercial</div>
-      <h3 class="work-card-title">CourtBorn — Sportswear Launch</h3>
-      <p class="work-card-desc">Cinematic brand ad for a fictional sportswear label. Fast cuts, motion typography, high-impact visual storytelling designed for social.</p>
+      <h3 class="work-card-title">KutBorn, Shoe Ad</h3>
+      <p class="work-card-desc">Cinematic brand ad for a sportswear label. Fast cuts, motion energy, and high-impact visual storytelling designed for social.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Veo 3</span>
         <span class="tool-pill">Runway</span>
         <span class="tool-pill">ElevenLabs</span>
       </div>
+      <a href="https://youtube.com/shorts/XpF9bYuV0KA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">Product Ad</div>
-      <h3 class="work-card-title">Herbal Soap — Brand Story</h3>
-      <p class="work-card-desc">Narrative-led product ad for a natural skincare brand. Emotional storytelling approach praised by the client for its warmth and authenticity.</p>
+      <h3 class="work-card-title">The Waste Museum, Herbal Soap</h3>
+      <p class="work-card-desc">Narrative-led product ad for a natural skincare brand. Emotional storytelling praised by the founder for its warmth and authenticity.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Kling</span>
         <span class="tool-pill">ElevenLabs</span>
         <span class="tool-pill">CapCut</span>
       </div>
+      <a href="https://youtube.com/shorts/Xy0a9TIv6rk?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">Product Ad</div>
-      <h3 class="work-card-title">Headphone Ad — Audio Brand</h3>
-      <p class="work-card-desc">High-energy product commercial with immersive sound design and kinetic visual language built for premium headphone positioning.</p>
+      <h3 class="work-card-title">Nebula, Headphone Ad</h3>
+      <p class="work-card-desc">High-energy product commercial with immersive sound design and kinetic visual language built for premium audio brand positioning.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Veo 3</span>
         <span class="tool-pill">Runway</span>
         <span class="tool-pill">ElevenLabs</span>
       </div>
+      <a href="https://youtube.com/shorts/ho6fPmPJckA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">Innovation Ad</div>
-      <h3 class="work-card-title">3D Avatar — Glasses Campaign</h3>
-      <p class="work-card-desc">Futuristic AI avatar-led campaign for a glasses brand. 3D character integration with cinematic lighting and brand-forward messaging.</p>
+      <h3 class="work-card-title">3D Avatar, Vision Pro Smart Glasses</h3>
+      <p class="work-card-desc">Futuristic AI avatar-led campaign for a smart glasses brand. 3D character integration with cinematic lighting and brand-forward messaging.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Runway</span>
         <span class="tool-pill">Kling</span>
         <span class="tool-pill">ElevenLabs</span>
       </div>
+      <a href="https://youtube.com/shorts/TyW2aMNo7dA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">FMCG</div>
-      <h3 class="work-card-title">Soft Drink — Lifestyle Reel</h3>
+      <h3 class="work-card-title">NovaShield, Drink Ad</h3>
       <p class="work-card-desc">Fast-paced lifestyle ad blending vibrant visuals with punchy storytelling to position the drink as the choice for a younger audience.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Veo 3</span>
         <span class="tool-pill">CapCut</span>
         <span class="tool-pill">ElevenLabs</span>
       </div>
+      <a href="https://youtube.com/shorts/hNljXusm_oI?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
     <div class="work-card" role="listitem">
-      <span class="work-card-arrow" aria-hidden="true">↗</span>
       <div class="work-card-tag">Skincare</div>
-      <h3 class="work-card-title">Skincare — Visual Brand Story</h3>
-      <p class="work-card-desc">Soft-tone, aspirational skincare content. Cinematic pacing and visual elegance tailored to a premium beauty audience.</p>
+      <h3 class="work-card-title">Etaskin, Brand Storytelling</h3>
+      <p class="work-card-desc">Soft-tone aspirational skincare storytelling. Cinematic pacing and visual elegance tailored to a premium beauty audience.</p>
       <div class="work-card-tools">
         <span class="tool-pill">Runway</span>
         <span class="tool-pill">Kling</span>
         <span class="tool-pill">ElevenLabs</span>
       </div>
+      <a href="https://youtube.com/shorts/hkAepXqWIhk?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
+    </div>
+
+    <div class="work-card" role="listitem">
+      <div class="work-card-tag">Luxury Brand</div>
+      <h3 class="work-card-title">Luxury Brand Film</h3>
+      <p class="work-card-desc">High-end cinematic brand video with rich visual composition, intentional pacing, and a premium aesthetic built for aspirational positioning.</p>
+      <div class="work-card-tools">
+        <span class="tool-pill">Veo 3</span>
+        <span class="tool-pill">Runway</span>
+        <span class="tool-pill">ElevenLabs</span>
+      </div>
+      <a href="https://youtube.com/shorts/mdjHpswIW0U?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
 
   </div>
@@ -662,9 +678,9 @@
   <p class="cta-sub">Open to full-time, contract, and freelance. Remote only.</p>
   <a href="mailto:olaoluwakiiti001@gmail.com" class="cta-email">olaoluwakiiti001@gmail.com</a>
   <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-    <a href="https://www.linkedin.com/in/olaoluwakiiti-olowookere-62914b3a2/" class="btn-ghost" style="display:inline-block;">LinkedIn</a>
-    <a href="https://www.instagram.com/olowo.ai/" class="btn-ghost" style="display:inline-block;">Instagram</a>
-    <a href="https://web.facebook.com/profile.php?id=61578103885518" class="btn-ghost" style="display:inline-block;">Facebook</a>
+    <a href="https://www.linkedin.com/in/olaoluwakiiti-olowookere-62914b3a2/" class="btn-ghost">LinkedIn</a>
+    <a href="https://www.instagram.com/olowo.ai/" class="btn-ghost">Instagram</a>
+    <a href="https://web.facebook.com/profile.php?id=61578103885518" class="btn-ghost">Facebook</a>
   </div>
 </section>
 
