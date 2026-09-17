@@ -6,7 +6,6 @@
 <title>Olaoluwakiiti Olowookere | AI Video Creator</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --black: #0a0a0a;
     --white: #f5f4f0;
@@ -17,459 +16,68 @@
     --border: rgba(255,255,255,0.08);
     --font: 'Inter', system-ui, sans-serif;
   }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
+  body { background: var(--black); color: var(--white); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
-
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 2.5rem;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    transition: color 0.2s;
-  }
-
+  nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .logo { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); letter-spacing: 0.06em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-
-  .hero {
-    min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 6rem 2.5rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,255,0,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,255,0,0.03) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-headline {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    max-width: 900px;
-    margin-bottom: 2rem;
-  }
-
-  .hero-headline em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 500px;
-    margin-bottom: 3rem;
-    line-height: 1.7;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--black);
-    padding: 0.85rem 2rem;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-
+  .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 6rem 2.5rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,255,0,0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,255,0,0.03) 0%, transparent 60%); pointer-events: none; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-headline { font-size: clamp(3rem, 7vw, 6rem); font-weight: 700; line-height: 1; letter-spacing: -0.03em; max-width: 900px; margin-bottom: 2rem; }
+  .hero-headline em { font-style: normal; color: var(--accent); }
+  .hero-sub { font-size: 18px; color: var(--muted); max-width: 500px; margin-bottom: 3rem; line-height: 1.7; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: var(--black); padding: 0.85rem 2rem; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; display: inline-block; }
   .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--white);
-    padding: 0.85rem 2rem;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.2);
-    cursor: pointer;
-    transition: border-color 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-
+  .btn-ghost { background: transparent; color: var(--white); padding: 0.85rem 2rem; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
   .btn-ghost:hover { border-color: var(--white); transform: translateY(-1px); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 2rem;
-    right: 2.5rem;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .hero-scroll::before {
-    content: '';
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, var(--muted));
-  }
-
-  .stats-bar {
-    display: flex;
-    gap: 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .stat {
-    flex: 1;
-    padding: 2rem 2.5rem;
-    border-right: 1px solid var(--border);
-  }
-
+  .hero-scroll { position: absolute; bottom: 2rem; right: 2.5rem; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-scroll::before { content: ''; width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--muted)); }
+  .stats-bar { display: flex; gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stat { flex: 1; padding: 2rem 2.5rem; border-right: 1px solid var(--border); }
   .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  section {
-    padding: 6rem 2.5rem;
-  }
-
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    margin-bottom: 3rem;
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .work-card {
-    background: var(--card);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s;
-  }
-
+  .stat-num { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  section { padding: 6rem 2.5rem; }
+  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 3rem; }
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .work-card { background: var(--card); padding: 2rem; position: relative; overflow: hidden; transition: background 0.2s; }
   .work-card:hover { background: #1c1c1c; }
-
-  .work-card-tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--accent);
-    padding: 3px 10px;
-    margin-bottom: 1.5rem;
-  }
-
-  .work-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-  }
-
-  .work-card-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .work-card-tools {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .tool-pill {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 3px 10px;
-  }
-
-  .watch-btn {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 6px 16px;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .watch-btn:hover {
-    background: var(--accent);
-    color: var(--black);
-  }
-
-  .testimonial-section {
-    background: var(--mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .testimonial-inner {
-    max-width: 800px;
-  }
-
-  .testimonial-quote {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    margin-bottom: 2.5rem;
-    font-style: italic;
-    color: var(--white);
-  }
-
-  .testimonial-quote::before {
-    content: '\201C';
-    color: var(--accent);
-    font-size: 4rem;
-    line-height: 0;
-    vertical-align: -0.6rem;
-    margin-right: 0.2rem;
-    font-style: normal;
-  }
-
-  .testimonial-attribution {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .attribution-dot {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--black);
-  }
-
-  .attribution-name {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .attribution-role {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-bottom: 3rem;
-  }
-
-  .service-card {
-    background: var(--card);
-    padding: 2rem;
-  }
-
-  .service-icon {
-    font-size: 28px;
-    margin-bottom: 1.2rem;
-  }
-
-  .service-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
-  }
-
-  .service-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .tools-section {
-    background: var(--mid);
-    border-top: 1px solid var(--border);
-  }
-
-  .tools-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .tool-badge {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 0.6rem 1.2rem;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s;
-  }
-
+  .work-card-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); background: var(--accent); padding: 3px 10px; margin-bottom: 1.5rem; }
+  .work-card-title { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.2; }
+  .work-card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
+  .work-card-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tool-pill { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); padding: 3px 10px; }
+  .watch-btn { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 6px 16px; transition: background 0.2s, color 0.2s; }
+  .watch-btn:hover { background: var(--accent); color: var(--black); }
+  .testimonial-section { background: var(--mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .testimonial-inner { max-width: 800px; }
+  .testimonial-quote { font-size: clamp(1.3rem, 2.5vw, 1.9rem); font-weight: 500; line-height: 1.5; letter-spacing: -0.01em; margin-bottom: 2.5rem; font-style: italic; color: var(--white); }
+  .testimonial-quote::before { content: '\201C'; color: var(--accent); font-size: 4rem; line-height: 0; vertical-align: -0.6rem; margin-right: 0.2rem; font-style: normal; }
+  .testimonial-attribution { display: flex; align-items: center; gap: 1rem; }
+  .attribution-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: var(--black); flex-shrink: 0; }
+  .attribution-name { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .attribution-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; }
+  .service-card { background: var(--card); padding: 2rem; }
+  .service-icon { font-size: 28px; margin-bottom: 1.2rem; }
+  .service-title { font-size: 16px; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .tools-section { background: var(--mid); border-top: 1px solid var(--border); }
+  .tools-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .tool-badge { background: var(--card); border: 1px solid var(--border); padding: 0.6rem 1.2rem; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; transition: border-color 0.2s, color 0.2s; }
   .tool-badge:hover { border-color: var(--accent); color: var(--accent); }
-
-  .cta-section {
-    text-align: center;
-    padding: 8rem 2.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .cta-title {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-title em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .cta-sub {
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 3rem;
-  }
-
-  .cta-email {
-    display: block;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    transition: opacity 0.2s;
-  }
-
+  .cta-section { text-align: center; padding: 8rem 2.5rem; border-top: 1px solid var(--border); }
+  .cta-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 1.5rem; }
+  .cta-title em { font-style: normal; color: var(--accent); }
+  .cta-sub { font-size: 18px; color: var(--muted); margin-bottom: 3rem; }
+  .cta-email { display: block; font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 700; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 2rem; transition: opacity 0.2s; }
   .cta-email:hover { opacity: 0.7; }
-
-  footer {
-    padding: 2rem 2.5rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
+  footer { padding: 2rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
   @media (max-width: 600px) {
     nav { padding: 1rem 1.2rem; }
     .nav-links { gap: 1rem; }
@@ -506,16 +114,16 @@
 
 <div class="stats-bar" role="list">
   <div class="stat" role="listitem">
-    <div class="stat-num">7+</div>
+    <div class="stat-num">50+</div>
     <div class="stat-label">Videos produced</div>
   </div>
   <div class="stat" role="listitem">
-    <div class="stat-num">2+</div>
+    <div class="stat-num">4+</div>
     <div class="stat-label">Years in AI video</div>
   </div>
   <div class="stat" role="listitem">
-    <div class="stat-num">5</div>
-    <div class="stat-label">Core AI tools mastered</div>
+    <div class="stat-num">20+</div>
+    <div class="stat-label">AI tools mastered</div>
   </div>
   <div class="stat" role="listitem">
     <div class="stat-num">100%</div>
@@ -526,7 +134,6 @@
 <section id="work">
   <p class="section-eyebrow">Selected work</p>
   <h2 class="section-title">Across categories.<br>One standard.</h2>
-
   <div class="work-grid" role="list">
 
     <div class="work-card" role="listitem">
@@ -534,9 +141,7 @@
       <h3 class="work-card-title">KutBorn, Shoe Ad</h3>
       <p class="work-card-desc">Cinematic brand ad for a sportswear label. Fast cuts, motion energy, and high-impact visual storytelling designed for social.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Veo 3</span>
-        <span class="tool-pill">Runway</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Veo 3</span><span class="tool-pill">Runway</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/XpF9bYuV0KA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -546,9 +151,7 @@
       <h3 class="work-card-title">The Waste Museum, Herbal Soap</h3>
       <p class="work-card-desc">Narrative-led product ad for a natural skincare brand. Emotional storytelling praised by the founder for its warmth and authenticity.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Kling</span>
-        <span class="tool-pill">ElevenLabs</span>
-        <span class="tool-pill">CapCut</span>
+        <span class="tool-pill">Kling</span><span class="tool-pill">ElevenLabs</span><span class="tool-pill">CapCut</span>
       </div>
       <a href="https://youtube.com/shorts/Xy0a9TIv6rk?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -558,9 +161,7 @@
       <h3 class="work-card-title">Nebula, Headphone Ad</h3>
       <p class="work-card-desc">High-energy product commercial with immersive sound design and kinetic visual language built for premium audio brand positioning.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Veo 3</span>
-        <span class="tool-pill">Runway</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Veo 3</span><span class="tool-pill">Runway</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/ho6fPmPJckA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -570,9 +171,7 @@
       <h3 class="work-card-title">3D Avatar, Vision Pro Smart Glasses</h3>
       <p class="work-card-desc">Futuristic AI avatar-led campaign for a smart glasses brand. 3D character integration with cinematic lighting and brand-forward messaging.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Runway</span>
-        <span class="tool-pill">Kling</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">HeyGen</span><span class="tool-pill">Runway</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/TyW2aMNo7dA?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -582,9 +181,7 @@
       <h3 class="work-card-title">NovaShield, Drink Ad</h3>
       <p class="work-card-desc">Fast-paced lifestyle ad blending vibrant visuals with punchy storytelling to position the drink as the choice for a younger audience.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Veo 3</span>
-        <span class="tool-pill">CapCut</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Seedance</span><span class="tool-pill">CapCut</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/hNljXusm_oI?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -594,9 +191,7 @@
       <h3 class="work-card-title">Etaskin, Brand Storytelling</h3>
       <p class="work-card-desc">Soft-tone aspirational skincare storytelling. Cinematic pacing and visual elegance tailored to a premium beauty audience.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Runway</span>
-        <span class="tool-pill">Kling</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Higgsfield</span><span class="tool-pill">Kling</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/hkAepXqWIhk?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -606,9 +201,7 @@
       <h3 class="work-card-title">Luxury Brand Film</h3>
       <p class="work-card-desc">High-end cinematic brand video with rich visual composition, intentional pacing, and a premium aesthetic built for aspirational positioning.</p>
       <div class="work-card-tools">
-        <span class="tool-pill">Veo 3</span>
-        <span class="tool-pill">Runway</span>
-        <span class="tool-pill">ElevenLabs</span>
+        <span class="tool-pill">Veo 3</span><span class="tool-pill">Flow</span><span class="tool-pill">ElevenLabs</span>
       </div>
       <a href="https://youtube.com/shorts/mdjHpswIW0U?feature=share" target="_blank" class="watch-btn">Watch Video ↗</a>
     </div>
@@ -620,7 +213,7 @@
   <div class="testimonial-inner">
     <p class="section-eyebrow">Client feedback</p>
     <blockquote class="testimonial-quote">
-      The story was wonderfully told.
+      I was impressed and stunned by how the video came out. The results were impressive, and I definitely look forward to working with him again.
     </blockquote>
     <div class="testimonial-attribution">
       <div class="attribution-dot" aria-hidden="true">JO</div>
@@ -635,7 +228,6 @@
 <section id="services">
   <p class="section-eyebrow">What I do</p>
   <h2 class="section-title">The full picture.</h2>
-
   <div class="services-grid" role="list">
     <div class="service-card" role="listitem">
       <div class="service-icon" aria-hidden="true">🎬</div>
@@ -667,8 +259,24 @@
     <span class="tool-badge" role="listitem">Veo 3</span>
     <span class="tool-badge" role="listitem">Runway</span>
     <span class="tool-badge" role="listitem">Kling</span>
+    <span class="tool-badge" role="listitem">Seedance</span>
+    <span class="tool-badge" role="listitem">HeyGen</span>
+    <span class="tool-badge" role="listitem">Higgsfield</span>
+    <span class="tool-badge" role="listitem">Flow</span>
+    <span class="tool-badge" role="listitem">Synthesia</span>
     <span class="tool-badge" role="listitem">ElevenLabs</span>
     <span class="tool-badge" role="listitem">CapCut</span>
+    <span class="tool-badge" role="listitem">Sora</span>
+    <span class="tool-badge" role="listitem">Pika</span>
+    <span class="tool-badge" role="listitem">Luma Dream Machine</span>
+    <span class="tool-badge" role="listitem">Minimax</span>
+    <span class="tool-badge" role="listitem">Udio</span>
+    <span class="tool-badge" role="listitem">Suno</span>
+    <span class="tool-badge" role="listitem">Adobe Firefly</span>
+    <span class="tool-badge" role="listitem">Midjourney</span>
+    <span class="tool-badge" role="listitem">Leonardo AI</span>
+    <span class="tool-badge" role="listitem">Topaz Video AI</span>
+    <span class="tool-badge" role="listitem">DaVinci Resolve</span>
   </div>
 </section>
 
